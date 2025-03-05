@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Devis</title>
+    <link rel="stylesheet" href="devis.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url(https://www.androidauthority.com/wp-content/uploads/2023/03/iPhone-14-Pro-in-hand.jpg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.3);
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Choisi Ton Téléphone :</h2>
+        <label for="modele">Contact nous pour un probléme plus précis</label>
+        <select id="modele">
+            <option value="iphone8">iPhone 8</option>
+            <option value="iphone8plus">iPhone 8 Plus</option>
+            <option value="iphonex">iPhone X</option>
+            <option value="iphonexs">iPhone XS</option>
+            <option value="iphonexsmax">iPhone XS Max</option>
+            <option value="iphonexr">iPhone XR</option>
+            <option value="iphone11">iPhone 11</option>
+            <option value="iphone11pro">iPhone 11 Pro</option>
+            <option value="iphone11promax">iPhone 11 Pro Max</option>
+            <option value="iphone12">iPhone 12</option>
+            <option value="iphone12mini">iPhone 12 Mini</option>
+            <option value="iphone12pro">iPhone 12 Pro</option>
+            <option value="iphone12promax">iPhone 12 Pro Max</option>
+            <option value="iphone13">iPhone 13</option>
+            <option value="iphone13mini">iPhone 13 Mini</option>
+            <option value="iphone13pro">iPhone 13 Pro</option>
+            <option value="iphone13promax">iPhone 13 Pro Max</option>
+            <option value="iphone14">iPhone 14</option>
+            <option value="iphone14plus">iPhone 14 Plus</option>
+            <option value="iphone14pro">iPhone 14 Pro</option>
+            <option value="iphone14promax">iPhone 14 Pro Max</option>
+            <option value="iphone15">iPhone 15</option>
+            <option value="iphone15plus">iPhone 15 Plus</option>
+            <option value="iphone15pro">iPhone 15 Pro</option>
+            <option value="iphone15promax">iPhone 15 Pro Max</option>
+        </select>
+
+        <div class="checkbox-group">
+            <label><input type="checkbox" value="vitre" id="vitre"> Changement vitre arrière</label>
+            <label><input type="checkbox" value="ecran" id="ecran"> Changement d'écran</label>
+            <label><input type="checkbox" value="batterie" id="batterie"> Changement de batterie</label>
+        </div>
+
+        <button onclick="calculerDevis()">Obtenir mon devis</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculerDevis() {
+            let modele = document.getElementById("modele").value;
+            let total = 0;
+            let prix = {
+    "vitre": {
+        "iphone8": 20, "iphone8plus": 20, "iphonex": 25, "iphonexs": 25, "iphonexsmax": 25, "iphonexr": 25, 
+        "iphone11": 30, "iphone11pro": 30, "iphone11promax": 30, "iphone12": 30, "iphone12mini": 30, "iphone12pro": 35, "iphone12promax": 35,
+        "iphone13": 35, "iphone13mini": 35, "iphone13pro": 40, "iphone13promax": 40, "iphone14": 40, "iphone14plus": 40, "iphone14pro": 45, "iphone14promax": 45,
+        "iphone15": 45, "iphone15plus": 45, "iphone15pro": 50, "iphone15promax": 50
+    },
+    "ecran": {
+        "iphone8": 35, "iphone8plus": 35, "iphonex": 40, "iphonexs": 40, "iphonexsmax": 45, "iphonexr": 40, 
+        "iphone11": 50, "iphone11pro": 50, "iphone11promax": 55, "iphone12": 55, "iphone12mini": 60, "iphone12pro": 60, "iphone12promax": 65,
+        "iphone13": 70, "iphone13mini": 75, "iphone13pro": 80, "iphone13promax": 85, "iphone14": 90, "iphone14plus": 95, "iphone14pro": 100, "iphone14promax": 110,
+        "iphone15": 115, "iphone15plus": 120, "iphone15pro": 130, "iphone15promax": 140
+    },
+    "batterie": {
+        "iphone8": 25, "iphone8plus": 30, "iphonex": 30, "iphonexs": 35, "iphonexsmax": 35, "iphonexr": 35, 
+        "iphone11": 40, "iphone11pro": 40, "iphone11promax": 45, "iphone12": 50, "iphone12mini": 50, "iphone12pro": 55, "iphone12promax": 55,
+        "iphone13": 60, "iphone13mini": 60, "iphone13pro": 65, "iphone13promax": 70, "iphone14": 75, "iphone14plus": 80, "iphone14pro": 85, "iphone14promax": 90,
+        "iphone15": 95, "iphone15plus": 100, "iphone15pro": 110, "iphone15promax": 120
+    }
+};
+
+
+            ["vitre", "ecran", "batterie"].forEach(type => {
+                if (document.getElementById(type).checked) {
+                    total += prix[type][modele] || 0;
+                }
+            });
+            
+            document.getElementById("result").innerText = `Total du devis : ${total} €`;
+        }
+    </script>
+    <div class="price-box" style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgb(255, 255, 255); padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+        <h2>Plus qu'une étape !</h2>
+        <p>Le prix te convient ? Contacte-nous pour faire réparer ton téléphone :</p>
+        <div class="social-icons" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+            <a href="" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/016/716/468/original/whatsapp-icon-free-png.png" alt="WhatsApp" style="width: 40px; height: 40px;"></a>
+            <a href="https://www.instagram.com/delta_phone34?igsh=MW1kMHdmZHJ6bm1xeQ%3D%3D&utm_source=qr" target="_blank"><img src="https://freelogopng.com/images/all_img/1658587303instagram-png.png" alt="Instagram" style="width: 40px; height: 40px;"></a>
+            <a href="https://snapchat.com/t/1geiG4rp" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/016/716/474/original/snapchat-icon-free-png.png" alt="Snapchat" style="width: 40px; height: 40px;"></a>
+        </div>
+    </div>
+    
+</body>
+</html>
